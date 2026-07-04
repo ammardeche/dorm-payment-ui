@@ -1,0 +1,57 @@
+{
+  "payment": {
+    "title": "Payment details",
+    "receipt": "Receipt",
+    "amount": "Amount",
+    "paymentDate": "Payment date",
+    "daysLate": "Days late",
+    "payer": "Payer",
+    "student": "Student",
+    "room": "Room",
+    "guest": "Guest",
+    "paymentInfo": "Payment information",
+    "method": "Method",
+    "period": "Period",
+    "dueDate": "Due date",
+    "receivedBy": "Received by",
+    "note": "Note",
+    "noNote": "No notes available",
+    "created": "Created",
+    "updated": "Updated",
+    "neverUpdated": "Never updated"
+  },
+  "status": {
+    "paid": "Paid",
+    "pending": "Pending",
+    "overdue": "Overdue"
+  },
+  "method": {
+    "cash": "Cash",
+    "card": "Card",
+    "transfer": "Bank transfer"
+  },
+  "table": {
+    "receipt": "Receipt",
+    "student": "Student",
+    "amount": "Amount",
+    "paymentDate": "Payment date",
+    "period": "Period",
+    "status": "Status",
+    "method": "Method",
+    "receivedBy": "Received by"
+  },
+  "MONTHS": {
+    "1": "January",
+    "2": "February",
+    "3": "March",
+    "4": "April",
+    "5": "May",
+    "6": "June",
+    "7": "July",
+    "8": "August",
+    "9": "September",
+    "10": "October",
+    "11": "November",
+    "12": "December"
+  }
+}

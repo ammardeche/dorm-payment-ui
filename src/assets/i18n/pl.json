@@ -1,0 +1,57 @@
+{
+  "payment": {
+    "title": "Szczegóły płatności",
+    "receipt": "Paragon",
+    "amount": "Kwota",
+    "paymentDate": "Data płatności",
+    "daysLate": "Dni opóźnienia",
+    "payer": "Płatnik",
+    "student": "Student",
+    "room": "Pokój",
+    "guest": "Gość",
+    "paymentInfo": "Informacje o płatności",
+    "method": "Metoda",
+    "period": "Okres",
+    "dueDate": "Termin płatności",
+    "receivedBy": "Przyjęte przez",
+    "note": "Notatka",
+    "noNote": "Brak notatek",
+    "created": "Utworzono",
+    "updated": "Zaktualizowano",
+    "neverUpdated": "Nigdy nie aktualizowano"
+  },
+  "status": {
+    "paid": "Opłacone",
+    "pending": "Oczekujące",
+    "overdue": "Zaległe"
+  },
+  "method": {
+    "cash": "Gotówka",
+    "card": "Karta",
+    "transfer": "Przelew bankowy"
+  },
+  "table": {
+    "receipt": "Paragon",
+    "student": "Student",
+    "amount": "Kwota",
+    "paymentDate": "Data płatności",
+    "period": "Okres",
+    "status": "Status",
+    "method": "Metoda",
+    "receivedBy": "Przyjęte przez"
+  },
+  "MONTHS": {
+    "1": "Styczeń",
+    "2": "Luty",
+    "3": "Marzec",
+    "4": "Kwiecień",
+    "5": "Maj",
+    "6": "Czerwiec",
+    "7": "Lipiec",
+    "8": "Sierpień",
+    "9": "Wrzesień",
+    "10": "Październik",
+    "11": "Listopad",
+    "12": "Grudzień"
+  }
+}

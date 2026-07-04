@@ -1,6 +1,6 @@
 import { inject, Inject, Injectable } from '@angular/core';
 import { environment } from '../../../environment/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,7 +11,18 @@ export class ApiService {
   private httpClient = inject(HttpClient);
 
   get<T>(path: string, params?: any): Observable<T> {
-    return this.httpClient.get<T>(`${this.baseUrl}${path}`, { params });
+    let httpParams = new HttpParams();
+
+    if (params) {
+      Object.keys(params).forEach((key) => {
+        if (params[key] !== null && params[key] !== undefined) {
+          httpParams = httpParams.set(key, params[key]);
+        }
+      });
+    }
+    return this.httpClient.get<T>(`${this.baseUrl}${path}`, {
+      params: httpParams,
+    });
   }
 
   post<T>(path: string, body: any): Observable<T> {

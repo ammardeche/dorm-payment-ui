@@ -1,0 +1,39 @@
+:host {
+  display: block;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+tbody tr {
+  transition: all 0.2s ease;
+}
+
+tbody tr:hover {
+  transform: scale(1.002);
+}
+
+.action-btn {
+  width: 36px;
+  height: 36px;
+
+  border-radius: 10px;
+  border: none;
+
+  background: #f8fafc;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+
+  font-size: 16px;
+}
+
+.action-btn:hover {
+  background: #e2e8f0;
+}
+
+.action-btn.delete:hover {
+  background: #fee2e2;
+}

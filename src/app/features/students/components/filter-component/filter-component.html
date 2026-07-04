@@ -1,0 +1,76 @@
+<section class="mb-6">
+  <div class="mb-5">
+    <h2 class="text-xl font-semibold text-slate-800">Student Filters</h2>
+
+    <p class="mt-1 text-sm text-slate-500">Search students using one or more filters.</p>
+  </div>
+
+  <form (ngSubmit)="search()" class="grid grid-cols-1 gap-4 lg:grid-cols-12 lg:items-end">
+    <!-- Student Number -->
+    <div class="lg:col-span-4">
+      <label for="studentNumber" class="mb-1 block text-sm font-medium text-slate-700">
+        Student Number
+      </label>
+
+      <input
+        id="studentNumber"
+        type="text"
+        placeholder="240137"
+        [formField]="studentFilterForm.studentNumber"
+        class="h-11 w-full rounded-md border border-slate-300 px-3 text-sm outline-none transition focus:border-indigo-500"
+      />
+    </div>
+
+    <!-- Room -->
+    <div class="lg:col-span-3">
+      <label for="roomId" class="mb-1 block text-sm font-medium text-slate-700"> Room </label>
+
+      <select
+        id="roomId"
+        [formField]="studentFilterForm.roomId"
+        class="h-11 w-full rounded-md border border-slate-300 px-3 text-sm outline-none transition focus:border-indigo-500"
+      >
+        <option value="">All Rooms</option>
+
+        @for (room of filterRooms(); track room.id) {
+          <option [value]="room.id">
+            {{ room.roomNumber }}
+          </option>
+        }
+      </select>
+    </div>
+
+    <!-- Status -->
+    <div class="lg:col-span-3">
+      <label for="isActive" class="mb-1 block text-sm font-medium text-slate-700"> Status </label>
+
+      <select
+        id="isActive"
+        [formField]="studentFilterForm.isActive"
+        class="h-11 w-full rounded-md border border-slate-300 px-3 text-sm outline-none transition focus:border-indigo-500"
+      >
+        <option value="all">All</option>
+        <option value="true">Active</option>
+        <option value="false">Inactive</option>
+      </select>
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex gap-2 lg:col-span-2">
+      <button
+        type="submit"
+        class="h-11 flex-1 rounded-md bg-slate-800 px-4 text-sm font-medium text-white transition hover:bg-slate-900"
+      >
+        Search
+      </button>
+
+      <button
+        type="button"
+        (click)="clear()"
+        class="h-11 rounded-md border border-slate-300 px-4 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
+      >
+        Clear
+      </button>
+    </div>
+  </form>
+</section>

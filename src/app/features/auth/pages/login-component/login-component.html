@@ -1,0 +1,25 @@
+<app-auth-header-component title="Welcome back" subtitle="Sign in to manage dorm payments" />
+
+@if (errorMessage()) {
+  <div class="text-red-600 mb-3 border-l-4 border-red-400 bg-red-200 px-3 py-2 text-xs">
+    {{ errorMessage() }}
+  </div>
+}
+
+<form (submit)="onSubmit($event)" class="space-y-5">
+  <app-auth-input-component
+    label="Email"
+    [field]="loginForm.email"
+    placeholder="you@dormflow.com"
+    type="email"
+  />
+
+  <app-auth-input-component
+    label="Password"
+    [field]="loginForm.password"
+    placeholder="Enter password"
+    type="password"
+  />
+
+  <app-auth-button-component [loading]="isLoading()"> Login </app-auth-button-component>
+</form>

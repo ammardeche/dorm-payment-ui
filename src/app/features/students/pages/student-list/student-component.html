@@ -1,0 +1,12 @@
+<div class="student-page">
+  <app-filter-component [filterRooms]="rooms()" (filterChanged)="onFilterChanged($event)" />
+
+  <app-student-table
+    [students]="students()"
+    [pagination]="pagination()"
+    (pageChanged)="onPageChanged($event)"
+    (view)="onView($event)"
+    (edit)="onEdit($event)"
+    (delete)="onDelete($event)"
+  />
+</div>
