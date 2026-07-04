@@ -8,6 +8,7 @@ import { finalize } from 'rxjs';
 import { AuthInputComponent } from '../../components/auth-input-component/auth-input-component';
 import { AuthButtonComponent } from '../../components/auth-button-component/auth-button-component';
 import { AuthHeaderComponent } from '../../components/auth-header-component/auth-header-component';
+import { LoginPayloadModel } from '../../service/models/login-payload';
 
 @Component({
   selector: 'app-login-component',
@@ -20,15 +21,7 @@ export class LoginComponent {
   _authService = inject(AuthService);
   isLoading = signal<boolean>(false);
   showPassword = signal<boolean>(false);
-  loginResponse = signal<LoginResponse>({
-    token: '',
-    user: {
-      id: '',
-      fullName: '',
-      email: '',
-      roles: [],
-    },
-  });
+  loginResponse = signal<LoginPayloadModel | null>(null);
 
   errorMessage = signal<string>('');
 
@@ -54,7 +47,7 @@ export class LoginComponent {
         .pipe(finalize(() => this.isLoading.set(false)))
         .subscribe({
           next: (res) => {
-            this.loginResponse.set(res);
+            this.loginResponse.set(res.payload);
           },
           error: (err: ApiError) => {
             this.errorMessage.set(err.message);

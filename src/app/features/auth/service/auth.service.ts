@@ -6,6 +6,8 @@ import { User } from '../../../core/models/api-response.model';
 import { LoginResponse } from './models/loginResponse.model';
 import { BehaviorSubject, tap } from 'rxjs';
 import { RegisterRequest } from './models/registerRequest.model';
+import { ApiResponse } from '../../../shared/models/api-response.model';
+import { LoginPayloadModel } from './models/login-payload';
 
 @Injectable({
   providedIn: 'root',
@@ -23,16 +25,32 @@ export class AuthService {
   }
 
   // login method
-
   login(email: string, password: string) {
-    return this.api.post<LoginResponse>('/auth/login', { email, password }).pipe(
-      tap((res) => {
-        this.tokenService.setToken(res.token);
-        this._currentUserSubject$.next(res.user);
-        this.storeUser(res.user);
-        this.router.navigate(['/dashboard']);
-      }),
-    );
+    return this.api
+      .post<ApiResponse<LoginPayloadModel>>('/auth/login', {
+        email,
+        password,
+      })
+      .pipe(
+        tap((response) => {
+          const payload = response.payload;
+
+          this.tokenService.setToken(payload.token);
+
+          const currentUser: User = {
+            id: '',
+            fullName: payload.fullName,
+            email: payload.email,
+            roles: [payload.role],
+          };
+
+          this._currentUserSubject$.next(currentUser);
+
+          this.storeUser(currentUser);
+
+          this.router.navigate(['/dashboard']);
+        }),
+      );
   }
 
   // register method
