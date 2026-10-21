@@ -14,7 +14,7 @@ import { DeactivateStudentRequest } from '../models/deactivate-student.model';
 export class StudentService {
   private api = inject(ApiService);
 
-  private readonly endpoint = '/Students';
+  private readonly endpoint = '/admin/student';
 
   /**
    * GET ALL
