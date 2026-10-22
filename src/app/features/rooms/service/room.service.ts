@@ -9,9 +9,9 @@ import { ApiResponse } from '../../../shared/models/api-response.model';
   providedIn: 'root',
 })
 export class RoomService {
-
+  
   private readonly apiService = inject(ApiService);
-  private readonly baseUrl = '/admin/rooms';
+  private readonly baseUrl = '/admin/Room';
 
 
 

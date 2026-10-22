@@ -8,6 +8,9 @@ import { StudentTable } from '../../components/student-table/student-table';
 import { PaginationModel } from '../../../../shared/models/pagination.model';
 import { FilterComponent } from '../../components/filter-component/filter-component';
 import { RoomResponseModel } from '../../../rooms/models/room-response.model';
+import { RoomService } from '../../../rooms/service/room.service';
+import { map } from 'rxjs';
+import { RoomOption } from '../../../rooms/models/room-option-model';
 const DEFAULT_PAGINATION: PaginationModel = {
   pageIndex: 1,
   pageSize: 10,
@@ -29,12 +32,13 @@ const DEFAULT_FILTER: StudentFilterModel = {
 })
 export class StudentComponent {
   private readonly studentService = inject(StudentService);
+  private readonly roomService = inject(RoomService);
   private readonly router = inject(Router);
   // private readonly roomService = inject(RoomService); // TODO
 
   students = signal<StudentResponseModel[]>([]);
   pagination = signal<PaginationModel>({ ...DEFAULT_PAGINATION });
-  rooms = signal<RoomResponseModel[]>([]);
+rooms = signal<RoomOption[]>([]);
 
   // Remembers the last applied filters so pagination can reuse them
   // without the filter bar needing to know about paging.
@@ -42,9 +46,12 @@ export class StudentComponent {
 
   ngOnInit(): void {
     this.loadRooms();
+
+  
     this.fetchStudents();
   }
 
+ 
   onFilterChanged(filters: StudentFilterModel): void {
     // A new filter submission always resets back to page 1.
     this.currentFilters = { ...filters, pageIndex: 1 };
@@ -85,7 +92,8 @@ export class StudentComponent {
   }
 
   private loadRooms(): void {
-    // TODO: replace with a real call, e.g.:
-    // this.roomService.getRooms().subscribe((response) => this.rooms.set(response.payload));
+   this.roomService.getAllRooms({pageSize: 100}).pipe(map((response) =>response.payload.map((r)=> ({id : r.id , roomNumber : r.roomNumber})))).subscribe((rooms) => {
+      this.rooms.set(rooms);
+    });
   }
 }

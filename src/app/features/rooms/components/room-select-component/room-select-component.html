@@ -1,0 +1,32 @@
+<div class="relative">
+  <input
+    type="text"
+    placeholder="All rooms"
+    [value]="search()"
+    (input)="onType($any($event.target).value)"
+    (focus)="open.set(true)"
+    class="h-11 w-full rounded-md border border-slate-300 px-3 text-sm outline-none transition focus:border-indigo-500"
+  />
+
+  @if (open()) {
+    <ul class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md border border-slate-200 bg-white shadow-lg">
+      <li
+        (click)="clearSelection()"
+        class="cursor-pointer px-3 py-2 text-sm text-slate-500 hover:bg-slate-100"
+      >
+        All rooms
+      </li>
+
+      @for (room of filtered(); track room.id) {
+        <li
+          (click)="select(room)"
+          class="cursor-pointer px-3 py-2 text-sm hover:bg-slate-100"
+        >
+          {{ room.roomNumber }}
+        </li>
+      } @empty {
+        <li class="px-3 py-2 text-sm text-slate-400">No rooms found</li>
+      }
+    </ul>
+  }
+</div>
