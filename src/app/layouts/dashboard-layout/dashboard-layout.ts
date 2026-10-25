@@ -6,7 +6,7 @@ import { BreadCrumb } from '../../shared/components/bread-crumb/bread-crumb';
 
 @Component({
   selector: 'app-dashboard-layout',
-  imports: [RouterOutlet, SidebarComponent, HeaderComponent, BreadCrumb],
+  imports: [RouterOutlet, SidebarComponent, HeaderComponent],
   templateUrl: './dashboard-layout.html',
   styleUrl: './dashboard-layout.css',
 })

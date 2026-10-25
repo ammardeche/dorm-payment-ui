@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { CreateStudentRequest } from '../models/create-student.model';
 import { UpdateStudentRequest } from '../models/update-student.model';
 import { DeactivateStudentRequest } from '../models/deactivate-student.model';
+import { StudentStatsModel } from '../models/student-stats.model';
 
 @Injectable({
   providedIn: 'root',
@@ -60,4 +61,11 @@ export class StudentService {
   deleteStudent(id: number): Observable<ApiResponse<string>> {
     return this.api.delete<ApiResponse<string>>(`${this.endpoint}/delete/${id}`);
   }
+
+
+  // get stats
+
+  getStudentStats() : Observable<ApiResponse<StudentStatsModel>> { 
+      return this.api.get<ApiResponse<StudentStatsModel>>(`${this.endpoint}/stats`);
+   }
 }
