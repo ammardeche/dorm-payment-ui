@@ -98,4 +98,6 @@
       }
     </tbody>
   </table>
+
+  <app-pagination [pagination]="pagination()" (pageChanged)="pageChanged.emit($event)" />
 </div>

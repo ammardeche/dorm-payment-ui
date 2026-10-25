@@ -11,6 +11,8 @@ import { RoomResponseModel } from '../../../rooms/models/room-response.model';
 import { RoomService } from '../../../rooms/service/room.service';
 import { map } from 'rxjs';
 import { RoomOption } from '../../../rooms/models/room-option-model';
+import { StudentStatsModel } from '../../models/student-stats.model';
+import { MetricStudentCard } from '../../components/student-statistics/metric-student-card/metric-student-card';
 const DEFAULT_PAGINATION: PaginationModel = {
   pageIndex: 1,
   pageSize: 10,
@@ -26,7 +28,7 @@ const DEFAULT_FILTER: StudentFilterModel = {
 };
 @Component({
   selector: 'app-student-component',
-  imports: [StudentTable, FilterComponent],
+  imports: [StudentTable, FilterComponent , MetricStudentCard],
   templateUrl: './student-component.html',
   styleUrl: './student-component.css',
 })
@@ -39,6 +41,7 @@ export class StudentComponent {
   students = signal<StudentResponseModel[]>([]);
   pagination = signal<PaginationModel>({ ...DEFAULT_PAGINATION });
 rooms = signal<RoomOption[]>([]);
+studentStats = signal<StudentStatsModel | null>(null);
 
   // Remembers the last applied filters so pagination can reuse them
   // without the filter bar needing to know about paging.
@@ -47,7 +50,7 @@ rooms = signal<RoomOption[]>([]);
   ngOnInit(): void {
     this.loadRooms();
 
-  
+    this.getStudentStats();
     this.fetchStudents();
   }
 
@@ -88,6 +91,13 @@ rooms = signal<RoomOption[]>([]);
       } else {
         this.pagination.update((p) => ({ ...p, pageIndex: this.currentFilters.pageIndex }));
       }
+    });
+  }
+
+  getStudentStats() {
+    this.studentService.getStudentStats().subscribe((response) => {
+      console.log('Student Stats:', response.payload);
+      this.studentStats.set(response.payload);
     });
   }
 

@@ -1,6 +1,34 @@
 <div class="student-page">
-  <app-filter-component [filterRooms]="rooms()" (filterChanged)="onFilterChanged($event)" />
 
+    <header class="flex my-6 flex-wrap items-center justify-between gap-4">
+    <div>
+      <h1 class="text-2xl font-semibold text-slate-900">
+        Students
+      </h1>
+
+      <p class="mt-1 text-sm text-slate-500">
+        Manage students and their dormitory information.
+      </p>
+    </div>
+
+    <button
+      type="button"
+   
+      class="inline-flex items-center gap-2 rounded-xl bg-blue-600
+             px-4 py-2.5 text-sm font-medium text-white shadow-sm
+             transition hover:bg-blue-700
+             focus-visible:outline-2 focus-visible:outline-offset-2
+             focus-visible:outline-blue-600"
+    >
+      <span aria-hidden="true" class="text-lg leading-none">+</span>
+      Add student
+    </button>
+  </header>
+
+  <app-metric-student-card [stats]="studentStats()" />
+
+  <app-filter-component [filterRooms]="rooms()" (filterChanged)="onFilterChanged($event)" />
+  
   <app-student-table
     [students]="students()"
     [pagination]="pagination()"

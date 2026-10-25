@@ -1,10 +1,11 @@
 import { Component, input, output } from '@angular/core';
 import { StudentResponseModel } from '../../models/student-response.model';
 import { PaginationModel } from '../../../../shared/models/pagination.model';
+import { Pagination } from '../../../../shared/components/pagination/pagination';
 
 @Component({
   selector: 'app-student-table',
-  imports: [],
+  imports: [Pagination],
   templateUrl: './student-table.html',
   styleUrl: './student-table.css',
 })

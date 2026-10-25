@@ -1,0 +1,43 @@
+<div class="flex flex-col items-center justify-between gap-3 border-t border-gray-200 px-6 py-4 sm:flex-row">
+  <p class="text-sm text-slate-500">
+    Showing <span class="font-medium text-slate-800">{{ from() }}–{{ to() }}</span>
+    of <span class="font-medium text-slate-800">{{ pagination().totalCount }}</span>
+  </p>
+
+  <nav class="flex items-center gap-1" aria-label="Pagination">
+    <button
+      type="button"
+      (click)="goTo(pagination().pageIndex - 1)"
+      [disabled]="pagination().pageIndex === 1"
+      class="h-9 rounded-md border border-slate-300 px-3 text-sm text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"
+    >
+      Prev
+    </button>
+
+    @for (page of pages(); track $index) {
+      @if (page === '…') {
+        <span class="px-2 text-slate-400">…</span>
+      } @else {
+        <button
+          type="button"
+          (click)="goTo(page)"
+          [class]="page === pagination().pageIndex
+            ? 'bg-slate-800 text-white'
+            : 'border border-slate-300 text-slate-700 hover:bg-slate-100'"
+          class="h-9 min-w-9 rounded-md px-3 text-sm transition"
+        >
+          {{ page }}
+        </button>
+      }
+    }
+
+    <button
+      type="button"
+      (click)="goTo(pagination().pageIndex + 1)"
+      [disabled]="pagination().pageIndex === totalPages()"
+      class="h-9 rounded-md border border-slate-300 px-3 text-sm text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"
+    >
+      Next
+    </button>
+  </nav>
+</div>
