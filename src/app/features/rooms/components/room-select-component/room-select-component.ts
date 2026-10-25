@@ -6,6 +6,8 @@ import { RoomOption } from '../../models/room-option-model';
   imports: [],
   templateUrl: './room-select-component.html',
   styleUrl: './room-select-component.css',
+    host: { '(document:click)': 'onDocumentClick($event)' },
+
 })
 export class RoomSelectComponent {
 

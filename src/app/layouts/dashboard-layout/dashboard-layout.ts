@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from '../sidebar-component/sidebar-component';
 import { HeaderComponent } from '../header-component/header-component';
+import { BreadCrumb } from '../../shared/components/bread-crumb/bread-crumb';
 
 @Component({
   selector: 'app-dashboard-layout',
-  imports: [RouterOutlet, SidebarComponent, HeaderComponent],
+  imports: [RouterOutlet, SidebarComponent, HeaderComponent, BreadCrumb],
   templateUrl: './dashboard-layout.html',
   styleUrl: './dashboard-layout.css',
 })

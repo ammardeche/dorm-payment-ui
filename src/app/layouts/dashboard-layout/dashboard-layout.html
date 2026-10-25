@@ -1,13 +1,15 @@
 <div class="flex h-screen bg-[#f1f5f9]">
   <!-- SIDEBAR -->
-  <app-sidebar-component></app-sidebar-component>
+  <app-sidebar-component />
 
   <!-- MAIN -->
-  <div class="flex-1 flex flex-col overflow-hidden">
-    <app-header-component></app-header-component>
+  <div class="flex min-w-0 flex-1 flex-col overflow-hidden">
+    <app-header-component />
 
     <main class="flex-1 overflow-y-auto p-6">
-      <router-outlet></router-outlet>
+    
+
+      <router-outlet />
     </main>
   </div>
 </div>

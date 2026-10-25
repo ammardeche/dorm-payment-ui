@@ -39,6 +39,7 @@ export const routes: Routes = [
       },
       {
         path: 'home',
+        data: { breadcrumb: 'Home' },
         loadComponent: () =>
           import('./features/home/pages/home-component/home-component').then(
             (h) => h.HomeComponent,
@@ -48,6 +49,7 @@ export const routes: Routes = [
       {
         path: 'students',
         data: {
+          breadcrumb: 'Students',
           roles: ['Admin'],
         },
         loadChildren: () =>
@@ -68,6 +70,7 @@ export const routes: Routes = [
       {
         path: 'rooms',
         data: {
+          breadcrumb: 'Rooms',
           roles: ['Admin'],
         },
         loadComponent: () =>
