@@ -4,6 +4,7 @@ import { PaginationModel } from '../../../../shared/models/pagination.model';
 import { RoomResponseModel } from '../../models/room-response.model';
 import { RoomQueryModel } from '../../models/room-query-request.model';
 import { RoomCardComponent } from '../../components/room-card-component/room-card-component';
+import { Pagination } from '../../../../shared/components/pagination/pagination';
 
 const DEFAULT_PAGINATION: PaginationModel = {
   pageIndex: 1,
@@ -21,7 +22,7 @@ const DEFAULT_FILTER: RoomQueryModel = {
 
 @Component({
   selector: 'app-room-list-component',
-  imports: [RoomCardComponent],
+  imports: [RoomCardComponent , Pagination],
   templateUrl: './room-list-component.html',
   styleUrl: './room-list-component.css',
 })
@@ -36,6 +37,12 @@ export class RoomListComponent implements OnInit {
   };
 
    ngOnInit(): void {
+    this.fetchRooms();
+  }
+
+
+   onPageChanged(pageIndex: number): void {
+    this.currentFilters = { ...this.currentFilters, pageIndex };
     this.fetchRooms();
   }
 
