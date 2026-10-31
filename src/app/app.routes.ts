@@ -74,8 +74,8 @@ export const routes: Routes = [
           roles: ['Admin'],
         },
         loadComponent: () =>
-          import('./features/rooms/pages/room-component/room-component').then(
-            (r) => r.RoomComponent,
+          import('./features/rooms/pages/room-list-component/room-list-component').then(
+            (r) => r.RoomListComponent,
           ),
       },
     ],

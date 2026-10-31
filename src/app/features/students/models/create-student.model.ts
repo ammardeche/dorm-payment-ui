@@ -8,7 +8,5 @@ export interface CreateStudentRequest {
 
   phoneNumber?: string;
 
-  roomId?: number;
-
   password: string;
 }

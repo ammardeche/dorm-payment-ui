@@ -1,4 +1,4 @@
-export interface RoomStudentModel {
+export interface RoomStudentResponseModel {
   id: number;
   fullName: string;
   studentNumber: string;

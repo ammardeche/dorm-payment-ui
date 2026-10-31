@@ -1,0 +1,43 @@
+<div class="student-page">
+
+    <header class="flex my-6 flex-wrap items-center justify-between gap-4">
+    <div>
+      <h1 class="text-2xl font-semibold text-slate-900">
+        Rooms
+      </h1>
+
+      <p class="mt-1 text-sm text-slate-500">
+        Manage students and their dormitory information.
+      </p>
+    </div>
+
+    <button
+      type="button"
+   
+      class="inline-flex items-center gap-2 rounded-xl bg-blue-600
+             px-4 py-2.5 text-sm font-medium text-white shadow-sm
+             transition hover:bg-blue-700
+             focus-visible:outline-2 focus-visible:outline-offset-2
+             focus-visible:outline-blue-600"
+    >
+      <span aria-hidden="true" class="text-lg leading-none">+</span>
+      Add Room
+    </button>
+  </header>
+
+  <!-- room statistics -->
+
+  <!-- room filter  -->
+
+  <!-- room cards -->
+<div class="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+  @for (room of rooms(); track room.id) {
+    <app-room-card-component [room]="room" />
+  } @empty {
+    <p class="col-span-full py-10 text-center text-gray-500">
+        No rooms found.
+    </p>
+  }
+</div>
+ 
+</div>

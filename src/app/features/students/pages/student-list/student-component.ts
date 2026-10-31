@@ -80,17 +80,19 @@ studentStats = signal<StudentStatsModel | null>(null);
   }
 
   private fetchStudents(): void {
-    this.studentService.getStudents(this.currentFilters).subscribe((response) => {
-      this.students.set(response.payload);
+    this.studentService.getStudents(this.currentFilters).subscribe({
+      next: (response) => {
+        this.students.set(response.payload);
 
-      // ASSUMPTION: ApiResponse<T> also carries pagination info alongside `payload`.
-      // If your ApiResponse shape is different, adjust this block accordingly.
-      const responsePagination = (response as any).pagination as PaginationModel | undefined;
-      if (responsePagination) {
-        this.pagination.set(responsePagination);
-      } else {
-        this.pagination.update((p) => ({ ...p, pageIndex: this.currentFilters.pageIndex }));
+        if (response.pagination) {
+          this.pagination.set(response.pagination);
+        }
+      },
+      error: (error) => {
+        console.error('Error fetching students:', error);
       }
+
+    
     });
   }
 
