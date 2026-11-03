@@ -1,0 +1,109 @@
+<section
+  aria-label="Room filters"
+  class="mb-6 rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm sm:p-6"
+>
+  <div
+    class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-12 lg:items-end"
+  >
+    <!-- Floor -->
+    <div class="lg:col-span-5">
+      <label
+        for="room-filter-floor"
+        class="mb-2 block text-xs font-medium text-slate-600"
+      >
+        Floor number
+      </label>
+
+      <div class="relative">
+        <svg
+          class="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-slate-400"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4 21V3h16v18M2 21h20M8 7h2m4 0h2M8 11h2m4 0h2M10 21v-6h4v6"
+          />
+        </svg>
+
+        <input
+          id="room-filter-floor"
+          type="number"
+       
+          step="1"
+          placeholder="All floors"
+          [formField]="roomFilterForm.floorNumber"
+          class="h-11 w-full rounded-xl border border-slate-200 bg-slate-50/80 pl-10 pr-3 text-sm text-slate-900 outline-none transition duration-200 placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+        />
+      </div>
+    </div>
+
+    <!-- Status -->
+    <div class="lg:col-span-5">
+      <label
+        for="room-filter-status"
+        class="mb-2 block text-xs font-medium text-slate-600"
+      >
+        Room status
+      </label>
+
+      <div class="relative">
+        <select
+          id="room-filter-status"
+          [formField]="roomFilterForm.status"
+          class="h-11 w-full cursor-pointer appearance-none rounded-xl border border-slate-200 bg-slate-50/80 pl-3.5 pr-10 text-sm text-slate-900 outline-none transition duration-200 hover:border-slate-300 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+        >
+          <option value="all">All statuses</option>
+          <option [value]="RoomStatus.Available">Available</option>
+          <option [value]="RoomStatus.Full">Full</option>
+          <option [value]="RoomStatus.Maintenance">Maintenance</option>
+        </select>
+
+        <svg
+          class="pointer-events-none absolute right-3.5 top-1/2 size-4 -translate-y-1/2 text-slate-400"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m8 10 4 4 4-4"
+          />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Reset -->
+    <div class="sm:col-span-2 lg:col-span-2">
+      <button
+        type="button"
+        (click)="clear()"
+        class="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-600 outline-none transition duration-200 hover:bg-slate-50 hover:text-slate-900 focus-visible:ring-4 focus-visible:ring-blue-500/10 active:bg-slate-100"
+      >
+        <svg
+          class="size-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3 10a9 9 0 1 1 2.7 8.4M3 4v6h6"
+          />
+        </svg>
+
+        Reset filters
+      </button>
+    </div>
+  </div>
+</section>

@@ -7,6 +7,7 @@ import { RoomCardComponent } from '../../components/room-card-component/room-car
 import { Pagination } from '../../../../shared/components/pagination/pagination';
 import { RoomStatsResponse } from '../../models/student-stats-response.model';
 import { MetricRoomCard } from '../../components/metric-room-card/metric-room-card';
+import { RoomFilterComponent } from '../../components/room-filter-component/room-filter-component';
 
 const DEFAULT_PAGINATION: PaginationModel = {
   pageIndex: 1,
@@ -24,7 +25,7 @@ const DEFAULT_FILTER: RoomQueryModel = {
 
 @Component({
   selector: 'app-room-list-component',
-  imports: [RoomCardComponent, Pagination, MetricRoomCard],
+  imports: [RoomCardComponent, Pagination, MetricRoomCard, RoomFilterComponent],
   templateUrl: './room-list-component.html',
   styleUrl: './room-list-component.css',
 })
@@ -34,7 +35,7 @@ export class RoomListComponent implements OnInit {
   rooms = signal<RoomResponseModel[]>([]);
   pagination = signal<PaginationModel>({ ...DEFAULT_PAGINATION });
   roomStats = signal<RoomStatsResponse | null>(null);
-
+  
  private currentFilters: RoomQueryModel = { 
   ...DEFAULT_FILTER
   };
@@ -78,5 +79,10 @@ export class RoomListComponent implements OnInit {
     });
 
   }
+
+  onFilterChanged(filters: RoomQueryModel): void {
+  this.currentFilters = filters;
+  this.fetchRooms();
+}
 
 }

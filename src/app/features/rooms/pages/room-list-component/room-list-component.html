@@ -30,7 +30,7 @@
     <app-metric-room-card [stats]="roomStats()"/>
 
   <!-- room filter  -->
-
+  <app-room-filter-component (filterChanged)="onFilterChanged($event)" />
   <!-- room cards -->
 <div class="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
   @for (room of rooms(); track room.id) {
