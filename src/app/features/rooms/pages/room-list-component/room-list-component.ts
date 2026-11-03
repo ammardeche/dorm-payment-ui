@@ -5,6 +5,8 @@ import { RoomResponseModel } from '../../models/room-response.model';
 import { RoomQueryModel } from '../../models/room-query-request.model';
 import { RoomCardComponent } from '../../components/room-card-component/room-card-component';
 import { Pagination } from '../../../../shared/components/pagination/pagination';
+import { RoomStatsResponse } from '../../models/student-stats-response.model';
+import { MetricRoomCard } from '../../components/metric-room-card/metric-room-card';
 
 const DEFAULT_PAGINATION: PaginationModel = {
   pageIndex: 1,
@@ -22,7 +24,7 @@ const DEFAULT_FILTER: RoomQueryModel = {
 
 @Component({
   selector: 'app-room-list-component',
-  imports: [RoomCardComponent , Pagination],
+  imports: [RoomCardComponent, Pagination, MetricRoomCard],
   templateUrl: './room-list-component.html',
   styleUrl: './room-list-component.css',
 })
@@ -31,12 +33,14 @@ export class RoomListComponent implements OnInit {
   private readonly roomService = inject(RoomService);
   rooms = signal<RoomResponseModel[]>([]);
   pagination = signal<PaginationModel>({ ...DEFAULT_PAGINATION });
+  roomStats = signal<RoomStatsResponse | null>(null);
 
  private currentFilters: RoomQueryModel = { 
   ...DEFAULT_FILTER
   };
 
    ngOnInit(): void {
+    this.getStatus();
     this.fetchRooms();
   }
 
@@ -46,6 +50,16 @@ export class RoomListComponent implements OnInit {
     this.fetchRooms();
   }
 
+
+  getStatus(): void {
+  this.roomService.getStudentStats().subscribe(
+    {
+      next: (response) => {
+        this.roomStats.set(response.payload);
+      }
+    }
+  )
+  }
 
   private fetchRooms (): void {
   

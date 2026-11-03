@@ -11,9 +11,10 @@ import { Pagination } from '../../../../shared/components/pagination/pagination'
 export class RoomCardComponent {
 
   readonly room = input.required<RoomResponseModel>();
-  // pagination = input.required<Pagination>();
+  readonly pageChanged = output<number>();
 
-    pageChanged = output<number>();
 
+
+ 
 
 }

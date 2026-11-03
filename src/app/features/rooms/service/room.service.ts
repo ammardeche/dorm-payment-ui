@@ -6,6 +6,7 @@ import { RoomQueryModel } from '../models/room-query-request.model';
 import { ApiResponse } from '../../../shared/models/api-response.model';
 import { CreateRoomRequestModel } from '../models/create-room-request.model';
 import { UpdateRoomRequestModel } from '../models/update-room-request.model';
+import { RoomStatsResponse } from '../models/student-stats-response.model';
 
 @Injectable({
   providedIn: 'root',
@@ -41,6 +42,12 @@ export class RoomService {
       request,
     );
   }
+
+  getStudentStats(): Observable<ApiResponse<RoomStatsResponse>> {
+  return this.apiService.get<ApiResponse<RoomStatsResponse>>(
+    `${this.baseUrl}/stats`
+  );
+}
 
   deleteRoom(id: number): Observable<ApiResponse<string>> {
     return this.apiService.delete<ApiResponse<string>>(`${this.baseUrl}/delete/${id}`);
