@@ -8,6 +8,7 @@ import { Pagination } from '../../../../shared/components/pagination/pagination'
 import { RoomStatsResponse } from '../../models/student-stats-response.model';
 import { MetricRoomCard } from '../../components/metric-room-card/metric-room-card';
 import { RoomFilterComponent } from '../../components/room-filter-component/room-filter-component';
+import { RoomFilterModel } from '../../models/room-filter-model';
 
 const DEFAULT_PAGINATION: PaginationModel = {
   pageIndex: 1,
@@ -43,6 +44,8 @@ export class RoomListComponent implements OnInit {
    ngOnInit(): void {
     this.getStatus();
     this.fetchRooms();
+
+    console.log(this.fetchRooms());
   }
 
 
@@ -76,18 +79,25 @@ export class RoomListComponent implements OnInit {
       error: (error) => {
         console.error('Error fetching rooms:', error);
       }
+
+  
     });
 
   }
 
-  onFilterChanged(filters: RoomQueryModel): void {
+  onFilterChanged(filters: RoomFilterModel): void {
     this.currentFilters = {
     status: filters.status ?? undefined,
     floorNumber: filters.floorNumber ?? undefined,
-    pageIndex: 1,   // a new filter goes back to page 1
-    pageSize: DEFAULT_FILTER.pageSize,
+    roomNumber: filters.roomNumber?.toString() || undefined,
+    pageIndex: 1,
+    pageSize: this.currentFilters.pageSize ?? 10,
   };
   this.fetchRooms();
-}
+  };
+
+
+
+
 
 }
