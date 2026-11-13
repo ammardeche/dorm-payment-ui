@@ -81,7 +81,12 @@ export class RoomListComponent implements OnInit {
   }
 
   onFilterChanged(filters: RoomQueryModel): void {
-  this.currentFilters = filters;
+    this.currentFilters = {
+    status: filters.status ?? undefined,
+    floorNumber: filters.floorNumber ?? undefined,
+    pageIndex: 1,   // a new filter goes back to page 1
+    pageSize: DEFAULT_FILTER.pageSize,
+  };
   this.fetchRooms();
 }
 
