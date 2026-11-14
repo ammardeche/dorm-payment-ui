@@ -67,8 +67,7 @@ export class RoomFilterComponent {
     return {
       status: raw.status === 'all' ? null : raw.status,
       floorNumber: raw.floorNumber,
-      roomNumber: raw.roomNumber  ,
-    };
+    }
   }
 
   onRoomSelected(id: number | null): void {

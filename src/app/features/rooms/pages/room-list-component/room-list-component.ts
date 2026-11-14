@@ -9,6 +9,7 @@ import { RoomStatsResponse } from '../../models/student-stats-response.model';
 import { MetricRoomCard } from '../../components/metric-room-card/metric-room-card';
 import { RoomFilterComponent } from '../../components/room-filter-component/room-filter-component';
 import { RoomFilterModel } from '../../models/room-filter-model';
+import { RoomSelectComponent } from '../../components/room-select-component/room-select-component';
 
 const DEFAULT_PAGINATION: PaginationModel = {
   pageIndex: 1,
@@ -26,7 +27,7 @@ const DEFAULT_FILTER: RoomQueryModel = {
 
 @Component({
   selector: 'app-room-list-component',
-  imports: [RoomCardComponent, Pagination, MetricRoomCard, RoomFilterComponent],
+  imports: [RoomCardComponent, Pagination, MetricRoomCard, RoomSelectComponent , RoomFilterComponent],
   templateUrl: './room-list-component.html',
   styleUrl: './room-list-component.css',
 })
@@ -89,7 +90,7 @@ export class RoomListComponent implements OnInit {
     this.currentFilters = {
     status: filters.status ?? undefined,
     floorNumber: filters.floorNumber ?? undefined,
-    roomNumber: filters.roomNumber?.toString() || undefined,
+ 
     pageIndex: 1,
     pageSize: this.currentFilters.pageSize ?? 10,
   };
